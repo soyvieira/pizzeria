@@ -21,6 +21,8 @@ import { SenOrderController } from './controllers/order/SenOrderController';
 
 import { ListOrderController } from './controllers/order/ListOrderController';
 
+import { DetailOrderController } from './controllers/order/DetailOrderController';
+
 import { isAuthenticated } from './middlewares/isAuthenticaded';
 
 import uploadConfig  from './config/multer';
@@ -59,5 +61,7 @@ router.delete('/order/remove', isAuthenticated, new RemoveItemController().handl
 router.put('/order/send', isAuthenticated, new SenOrderController().handle) //Send order to production
 
 router.get('/orders', isAuthenticated, new ListOrderController().handle) //List orders in production
+
+router.get('/order/detail', isAuthenticated, new DetailOrderController().handle) //Show order details 
 
 export { router }; 
