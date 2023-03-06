@@ -19,6 +19,8 @@ import { RemoveItemController } from './controllers/order/RemoveItemController';
 
 import { SenOrderController } from './controllers/order/SenOrderController';
 
+import { ListOrderController } from './controllers/order/ListOrderController';
+
 import { isAuthenticated } from './middlewares/isAuthenticaded';
 
 import uploadConfig  from './config/multer';
@@ -46,14 +48,16 @@ router.post('/product', isAuthenticated, upload.single('file'), new CreateProduc
 router.get('/category/product', isAuthenticated, new ListByCategoryController().handle)
 
 //Orders routes
-router.post('/order', isAuthenticated, new CreateOrderController().handle)
+router.post('/order', isAuthenticated, new CreateOrderController().handle) //Create order
 
-router.delete('/order', isAuthenticated, new RemoveOrderController().handle)
+router.delete('/order', isAuthenticated, new RemoveOrderController().handle) //Delete order
 
-router.post('/order/add', isAuthenticated, new AddItemController().handle)
+router.post('/order/add', isAuthenticated, new AddItemController().handle) //Add item on order
 
-router.delete('/order/remove', isAuthenticated, new RemoveItemController().handle)
+router.delete('/order/remove', isAuthenticated, new RemoveItemController().handle) //Remove an item from order
 
-router.put('/order/send', isAuthenticated, new SenOrderController().handle)
+router.put('/order/send', isAuthenticated, new SenOrderController().handle) //Send order to production
+
+router.get('/orders', isAuthenticated, new ListOrderController().handle) //List orders in production
 
 export { router }; 
